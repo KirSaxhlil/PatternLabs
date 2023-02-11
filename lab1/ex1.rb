@@ -23,11 +23,11 @@ case lang
 end
 
 puts "Enter ruby command:"
-rc = STDIN.gets.chomp.downcase
-otp = `ruby -e '#{rc}'`
-puts otp
+ruby_command = STDIN.gets.chomp.downcase
+output = `ruby -e '#{ruby_command}'`
+puts output
 
 puts "Enter OS command:"
-oc = STDIN.gets.chomp.downcase
-otp = `#{oc}`
-puts otp
+OS_command = STDIN.gets.chomp.downcase
+output = `#{OS_command}`
+puts output

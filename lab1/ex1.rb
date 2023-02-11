@@ -21,3 +21,13 @@ case lang
 				puts "idk what is it"
 		end
 end
+
+puts "Enter ruby command:"
+rc = STDIN.gets.chomp.downcase
+otp = `ruby -e '#{rc}'`
+puts otp
+
+puts "Enter OS command:"
+oc = STDIN.gets.chomp.downcase
+otp = `#{oc}`
+puts otp

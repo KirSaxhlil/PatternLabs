@@ -42,5 +42,21 @@ def find_max_in_array(array)
 	return max
 end
 
-b = find_max_in_array(a)
+def find_first_positive_value_index(array)
+	if array.empty? #if array has no elements, it has no max
+		return nil
+	end
+	for index in 0..array.length-1
+		begin
+			if array[index] > 0
+				return index
+			end
+		rescue ArgumentError #check for non numerical value
+			return nil
+		end
+	end
+	return -1 # if array has no positive elements
+end
+
+b = find_first_positive_value_index(a)
 puts b

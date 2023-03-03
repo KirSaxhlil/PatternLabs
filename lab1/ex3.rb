@@ -1,7 +1,3 @@
-a = []
-
-
-
 def find_min_in_array(array)
 	if array.empty? #if array has no elements, it has no min
 		return nil
@@ -58,5 +54,19 @@ def find_first_positive_value_index(array)
 	return -1 # if array has no positive elements
 end
 
-b = find_first_positive_value_index(a)
+def read_file_to_array(filename)
+	array = []
+	begin
+		File.open(filename, "r") do |file|
+			file.each_line { |x| array.push(x.to_i) }
+		end
+	rescue Errno::ENOENT
+	end
+	return array
+end
+
+a = [2,4,5,6]
+array = read_file_to_array("filet.txt")
+puts array
+b = find_first_positive_value_index(array)
 puts b

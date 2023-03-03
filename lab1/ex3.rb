@@ -65,8 +65,18 @@ def read_file_to_array(filename)
 	return array
 end
 
-a = [2,4,5,6]
-array = read_file_to_array("filet.txt")
-puts array
-b = find_first_positive_value_index(array)
-puts b
+array = read_file_to_array(ARGV[1])
+if !array.empty?
+	case ARGV[0]
+		when "find_min_in_array"
+			puts find_min_in_array(array)
+		when "find_max_in_array"
+			puts find_max_in_array(array)
+		when "find_first_positive_value_index"
+			puts find_first_positive_value_index(array)
+		else
+			puts "Wrong method name."
+	end
+else
+	puts "File is empty or not exist."
+end

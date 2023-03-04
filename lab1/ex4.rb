@@ -25,8 +25,15 @@ def find_two_mins(array)
 	return mins
 end
 
+def find_nearest(array, r)
+	difference = array.collect {|x| (x - r).abs}
+	return array[difference.index(difference.min)]
+end
+
 array1 = [2,1,1,1,1,1,1,1]
 array2 = [3,4,4,3,5,1,1,2,2,3,4]
+array3 = [3.6, 3.3, 3.45, 3.56]
 
 #puts find_one_different(array1)
-puts find_two_mins(array2)
+#puts find_two_mins(array2)
+puts find_nearest(array3, 3.5)

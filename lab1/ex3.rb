@@ -1,11 +1,11 @@
 def find_min_in_array(array)
 	if array.empty? #if array has no elements, it has no min
-		return nil
+		raise StandardError.new "Array is empty."
 	end
 	min = array[0]
 	for number in array
 		if nil == number # check for bad values
-			return nil
+			raise StandardError.new "Bad value in array."
 		end
 		begin
 			if number < min
@@ -20,12 +20,12 @@ end
 
 def find_max_in_array(array)
 	if array.empty? #if array has no elements, it has no max
-		return nil
+		raise StandardError.new "Array is empty."
 	end
 	max = array[0]
 	for number in array
 		if nil == number # check for bad values
-			return nil
+			raise StandardError.new "Bad value in array."
 		end
 		begin
 			if number > max
@@ -40,7 +40,7 @@ end
 
 def find_first_positive_value_index(array)
 	if array.empty? #if array has no elements, it has no max
-		return nil
+		raise StandardError.new "Array is empty."
 	end
 	for index in 0..array.length-1
 		begin

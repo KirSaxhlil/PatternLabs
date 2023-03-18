@@ -1,13 +1,18 @@
 class Student
 	attr_reader :name, :family, :patronymic, :phone_number, :email, :telegram, :git
 	
-	def initialize(new_name:, new_family:, new_patronymic:, new_number:"", new_email:"", new_telegram:"", new_git:"")
+	def initialize(hash)
 		#name, family and patronymic are necessary, others optional
-		set_name(new_name:new_name, new_family:new_family, new_patronymic:new_patronymic)
-		set_phone_number(new_number)
-		set_email(new_email)
-		set_telegram(new_telegram)
-		set_git(new_git)
+		if(hash[:name] == nil or hash[:family] == nil or hash[:patronymic] == nil)
+			raise ArgumentError.new "Name, family and patronymic are necessary for constructor."
+		end
+		def_hash = hash
+		def_hash.default = ""
+		set_name(new_name:def_hash[:name], new_family:def_hash[:family], new_patronymic:def_hash[:patronymic])
+		set_phone_number(def_hash[:number])
+		set_email(def_hash[:email])
+		set_telegram(def_hash[:telegram])
+		set_git(def_hash[:git])
 	end
 	
 	def set_name(new_name:"", new_family:"", new_patronymic:"")

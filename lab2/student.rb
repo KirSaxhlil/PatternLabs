@@ -1,4 +1,3 @@
-
 class Student
 	attr_reader :name, :family, :patronymic, :phone_number, :email, :telegram, :git
 	
@@ -101,12 +100,14 @@ class Student
 		end
 	end
 	
-	def PrintInfo
-		puts "This is info about: #{self.family} #{self.name} #{self.patronymic}"
-		puts "Phone number: #{self.phone_number}" if self.phone_number != ""
-		puts "Email: #{self.email}" if self.email != ""
-		puts "Telegram: #{self.telegram}" if self.telegram != ""
-		puts "Git: #{self.git}" if self.git != ""
+	def GetInfo
+		info = ""
+		info += "This is info about: #{self.family} #{self.name} #{self.patronymic}" + "\n"
+		info += "Phone number: #{self.phone_number}" + "\n" if self.phone_number != ""
+		info += "Email: #{self.email}" + "\n" if self.email != ""
+		info += "Telegram: #{self.telegram}" + "\n" if self.telegram != ""
+		info += "Git: #{self.git}" + "\n" if self.git != ""
+		return info
 	end
 	
 end

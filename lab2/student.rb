@@ -60,7 +60,7 @@ class Student
 	def set_email(new_email)
 		if new_email == "" # if we set empty string, then we clear email
 			@email = ""
-		elsif new_email.match(/^\w*[a-zA-Z]+\w*@\w*[a-zA-Z]+\w*\.[a-zA-Z]+$/) # before and after @ need any letter, digit or _, but at least 1 letter, after XX@XX needs dot, and after only letters
+		elsif Student.is_email(new_email)
 			@email = new_email
 		else
 			raise ArgumentError.new "Wrong email address."
@@ -77,7 +77,7 @@ class Student
 			if new_telegram[0] == '@' #check for first staying @
 				dog = true
 			end
-			if (if dog then new_telegram[1..-1] else new_telegram end).match(/^\w+$/)
+			if Student.is_telegram(new_telegram)
 				@telegram = (if dog then '' else '@' end) + new_telegram
 			else
 				raise ArgumentError.new  "Wrong telegram user id."
@@ -90,7 +90,7 @@ class Student
 	def set_git(new_git)
 		if new_git == "" # if we set empty string, then we clear git
 			@git = ""
-		elsif new_git.match(/^(https\:\/\/)?((github)|(gitlab))\.(com)\/\w+$/) # at begin may be https://, after need github.com/ or gitlab.com/, after we need user id
+		elsif Student.is_git(new_git)
 			@git = new_git
 		else
 			raise ArgumentError.new "Wrong git user address."
@@ -119,6 +119,24 @@ class Student
 			return false
 		end
 		return true
+	end
+	
+	def self.is_email(string)
+		# before and after @ need any letter, digit or _, but at least 1 letter, after XX@XX needs dot, and after only letters
+		return string.match(/^\w*[a-zA-Z]+\w*@\w*[a-zA-Z]+\w*\.[a-zA-Z]+$/)
+	end
+	
+	def self.is_git(string)
+		# at begin may be https://, after need github.com/ or gitlab.com/, after we need user id
+		return string.match(/^(https\:\/\/)?((github)|(gitlab))\.(com)\/\w+$/)
+	end
+	
+	def self.is_telegram(string)
+		temp_string = string
+		if temp_string[0] == '@' #check for first staying @
+			temp_string = string[1..-1]
+		end
+		return temp_string.match(/^\w+$/)
 	end
 	
 end

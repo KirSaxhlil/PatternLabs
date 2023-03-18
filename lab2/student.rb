@@ -139,4 +139,28 @@ class Student
 		return temp_string.match(/^\w+$/)
 	end
 	
+	def has_git()
+		return git != ""
+	end
+	
+	def has_phone_number()
+		return phone_number != ""
+	end
+	
+	def has_email()
+		return email != ""
+	end
+	
+	def has_telegram()
+		return telegram != ""
+	end
+	
+	def has_contact()
+		return ( has_phone_number() or has_email() or has_telegram() )
+	end
+	
+	def validate()
+		return ( has_git() and has_contact() )
+	end
+	
 end

@@ -45,19 +45,11 @@ class Student
 				@phone_number = ""
 				return
 			end
-			plus = false
-			temp_number = new_number
-			if temp_number[0] == '+' #check for saving first staying plus
-				plus = true
-				temp_number = temp_number[1..-1]
+			if Student.is_phone_number(new_number)
+				@phone_number = new_number
+			else
+				raise ArgumentError.new "#{new_number} is not a phone number."
 			end
-			if temp_number.match(/\D/)
-				raise ArgumentError.new "Wrong number."
-			end
-			if temp_number.length != 11
-				raise ArgumentError.new "Wrong phone number length."
-			end
-			@phone_number = (if plus then '+' else '' end) + temp_number
 		elsif new_number.class == Integer
 			set_phone_number(new_number.to_s) #we are integers haters
 		else
@@ -105,7 +97,7 @@ class Student
 		end
 	end
 	
-	def GetInfo
+	def get_info
 		info = ""
 		info += "This is info about: #{self.family} #{self.name} #{self.patronymic}" + "\n"
 		info += "Phone number: #{self.phone_number}" + "\n" if self.phone_number != ""
@@ -113,6 +105,20 @@ class Student
 		info += "Telegram: #{self.telegram}" + "\n" if self.telegram != ""
 		info += "Git: #{self.git}" + "\n" if self.git != ""
 		return info
+	end
+	
+	def self.is_phone_number(string)
+		temp_string = string
+		if string[0] == '+'
+			temp_string = string[1..-1]
+		end
+		if temp_string.match(/\D/)
+			return false
+		end
+		if temp_string.length != 11
+			return false
+		end
+		return true
 	end
 	
 end

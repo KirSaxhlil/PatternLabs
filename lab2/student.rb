@@ -9,7 +9,7 @@ class Student
 		def_hash = hash
 		def_hash.default = ""
 		set_name(new_name:def_hash[:name], new_family:def_hash[:family], new_patronymic:def_hash[:patronymic])
-		set_phone_number(def_hash[:number])
+		set_phone_number(def_hash[:phone_number])
 		set_email(def_hash[:email])
 		set_telegram(def_hash[:telegram])
 		set_git(def_hash[:git])
@@ -161,6 +161,13 @@ class Student
 	
 	def validate()
 		return ( has_git() and has_contact() )
+	end
+	
+	def set_contacts(contacts)
+		temp_contacts = contacts
+		set_email(temp_contacts[:email]) if(temp_contacts[:email] != nil)
+		set_phone_number(temp_contacts[:phone_number]) if(temp_contacts[:phone_number] != nil)
+		set_telegram(temp_contacts[:telegram]) if(temp_contacts[:telegram] != nil)
 	end
 	
 end

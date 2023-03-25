@@ -9,10 +9,10 @@ class Student
 		def_hash = hash
 		def_hash.default = ""
 		set_name(new_name:def_hash[:name], new_family:def_hash[:family], new_patronymic:def_hash[:patronymic])
-		set_phone_number(def_hash[:phone_number])
-		set_email(def_hash[:email])
-		set_telegram(def_hash[:telegram])
-		set_git(def_hash[:git])
+		self.phone_number = def_hash[:phone_number]
+		self.email = def_hash[:email]
+		self.telegram = def_hash[:telegram]
+		self.git = def_hash[:git]
 	end
 	
 	def set_name(new_name:"", new_family:"", new_patronymic:"")
@@ -39,7 +39,7 @@ class Student
 		end
 	end
 	
-	def set_phone_number(new_number)
+	def phone_number=(new_number)
 		if new_number.class == String
 			if new_number == ""
 				@phone_number = ""
@@ -51,13 +51,13 @@ class Student
 				raise ArgumentError.new "#{new_number} is not a phone number."
 			end
 		elsif new_number.class == Integer
-			set_phone_number(new_number.to_s) #we are integers haters
+			self.phone_number = (new_number.to_s) #we are integers haters
 		else
 			raise TypeError.new "Phone number must be String or Integer."
 		end
 	end
 	
-	def set_email(new_email)
+	def email=(new_email)
 		if new_email == "" # if we set empty string, then we clear email
 			@email = ""
 		elsif Student.is_email(new_email)
@@ -67,7 +67,7 @@ class Student
 		end
 	end
 	
-	def set_telegram(new_telegram)
+	def telegram=(new_telegram)
 		if new_telegram.class == String
 			if new_telegram == ""
 				@telegram = "" #clearing telegram field
@@ -87,7 +87,7 @@ class Student
 		end
 	end
 	
-	def set_git(new_git)
+	def git=(new_git)
 		if new_git == "" # if we set empty string, then we clear git
 			@git = ""
 		elsif Student.is_git(new_git)
@@ -165,9 +165,9 @@ class Student
 	
 	def set_contacts(contacts)
 		temp_contacts = contacts
-		set_email(temp_contacts[:email]) if(temp_contacts[:email] != nil)
-		set_phone_number(temp_contacts[:phone_number]) if(temp_contacts[:phone_number] != nil)
-		set_telegram(temp_contacts[:telegram]) if(temp_contacts[:telegram] != nil)
+		self.email = temp_contacts[:email] if(temp_contacts[:email] != nil)
+		self.phone_number = temp_contacts[:phone_number] if(temp_contacts[:phone_number] != nil)
+		self.telegram = temp_contacts[:telegram] if(temp_contacts[:telegram] != nil)
 	end
 	
 end

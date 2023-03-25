@@ -15,24 +15,24 @@ class Student
 		self.git = def_hash[:git]
 	end
 	
-	def set_name(new_name:"", new_family:"", new_patronymic:"")
-		if new_name != "" #if we not input name, not change this
-			if new_name.match(/^[a-zA-Z]+$/)
-				@name = new_name.capitalize
+	def set_name(hash)
+		if hash[:name] != nil #if we not input name, not change this
+			if hash[:name].match(/^[a-zA-Z]+$/)
+				@name = hash[:name].capitalize
 			else
 				raise ArgumentError.new "Wrong name."
 			end
 		end
-		if new_family != "" #if we not input family, not change this
-			if new_family.match(/^[a-zA-Z]+$/)
-				@family = new_family.capitalize
+		if hash[:family] != nil #if we not input family, not change this
+			if hash[:family].match(/^[a-zA-Z]+$/)
+				@family = hash[:family].capitalize
 			else
 				raise ArgumentError.new "Wrong family."
 			end
 		end
-		if new_patronymic != "" #if we not input patronymic, not change this
-			if new_patronymic.match(/^[a-zA-Z]+$/)
-				@patronymic = new_patronymic.capitalize
+		if hash[:patronymic] != "" #if we not input patronymic, not change this
+			if hash[:patronymic].match(/^[a-zA-Z]+$/)
+				@patronymic = hash[:patronymic].capitalize
 			else
 				raise ArgumentError.new "Wrong patronymic."
 			end

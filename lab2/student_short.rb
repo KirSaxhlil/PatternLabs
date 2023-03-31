@@ -1,4 +1,9 @@
-class StudentShort
+require_relative "base_student.rb"
+require_relative "student.rb"
+
+class StudentShort < BaseStudent
+	attr_reader :short_name
+	
 	def initialize(object:nil, hash:nil)
 		if object != nil
 			constructor_object(object)
@@ -9,43 +14,60 @@ class StudentShort
 		end
 	end
 	
+	### CONSTRUCTOR METHODS
 	private
 	
-	def constructor_default
-		raise ArgumentError.new "StudentShort's constructor needs data."
-	end
 	def constructor_object(object)
-		self.name = object.get_family_and_initials()
+		self.id = object.id
+		self.short_name = object.get_family_and_initials()
 		self.git = object.git
-		if object.has_phone_number()
-			self.contact = object.phone_number
-		elsif object.has_telegram()
-			self.contact = object.telegram
-		elsif object.has_email()
-			self.contact = object.email
+		contact = object.get_one_contact()
+		if contact != nil
+			set_contact_by_name(contact[:type], contact[:contact])
 		end
 	end
 	def constructor_string(hash)
 		self.id = hash[:id]
 		splitted = hash[:string].split(';')
-		self.name = splitted[0]
+		if !Student.is_get_family_and_initials(splitted[0])
+			raise ArgumentError.new "Family and initials in wrong format."
+		end
+		self.short_name = splitted[0]
 		self.git = splitted[1]
-		self.contact = splitted[2]
+		contact_splitted = splitted[2].split(':')
+		set_contact_by_name(contact_splitted[0], contact_splitted[1])
 	end
 	
-	def id=(new_id)
-		@id = new_id
+	### OBJECT PUBLIC METHODS
+	public
+	
+	def get_info
+		info = super()
+		info += ";#{short_name};"
+		info += "#{self.git};"
+		contact = get_one_contact()
+		info += "#{contact[:type]}:#{contact[:contact]}"
+		return info
 	end
 	
-	def name=(new_name)
-		@name = new_name
+	### OBJECT PRIVATE METHODS
+	
+	private :set_contacts, :git=, :id=
+	
+	private
+	
+	def short_name=(new_short_name)
+		@short_name = new_short_name
 	end
 	
-	def git=(new_git)
-		@git = new_git
-	end
-	
-	def contact=(new_contact)
-		@contact = new_contact
+	def set_contact_by_name(name, contact)
+		case name
+			when "phone_number"
+				set_contacts(phone_number:contact)
+			when "telegram"
+				set_contacts(telegram:contact)
+			when "email"
+				set_contacts(email:contact)
+		end
 	end
 end

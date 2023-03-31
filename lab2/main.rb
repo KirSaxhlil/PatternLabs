@@ -19,6 +19,13 @@ students = Student.read_from_txt("students.txt")
 
 students.each { |obj| puts obj.get_info }
 
+Student.write_to_txt("file.txt", students)
+
+students2 = Student.read_from_txt("file.txt")
+
+students2.each { |obj| puts obj.get_info }
+
+
 #object3.set_contacts({email:"aba@sringe.com", telegram:nil})
 #puts object3.get_info()
 

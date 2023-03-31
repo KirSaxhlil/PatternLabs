@@ -63,12 +63,7 @@ class Student < BaseStudent
 	end
 	
 	def get_info_full
-		info = ""
-		info += "This is info about: #{self.family} #{self.name} #{self.patronymic}" + "\n"
-		info += "Phone number: #{self.phone_number}" + "\n" if self.phone_number != nil
-		info += "Email: #{self.email}" + "\n" if self.email != nil
-		info += "Telegram: #{self.telegram}" + "\n" if self.telegram != nil
-		info += "Git: #{self.git}" + "\n" if self.git != nil
+		info = "#{self.id};#{self.name};#{self.family};#{self.patronymic};#{self.phone_number};#{self.email};#{self.telegram};#{self.git}"
 		return info
 	end
 	
@@ -96,5 +91,11 @@ class Student < BaseStudent
 			file.each_line { |x| objects.push(Student.new(string:x[0..-2])) }
 		end
 		return objects
+	end
+	
+	def self.write_to_txt(path, array)
+		File.open(path, "w") do |file|
+			array.each { |obj| file.write(obj.get_info_full+"\n") }
+		end
 	end
 end

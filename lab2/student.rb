@@ -13,7 +13,7 @@ class Student
 	
 	private
 	
-	def constructor_default()
+	def constructor_default
 		raise ArgumentError.new "Student constructor needs data."
 	end
 	def constructor_hash(hash)

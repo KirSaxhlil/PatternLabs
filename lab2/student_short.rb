@@ -29,7 +29,7 @@ class StudentShort < BaseStudent
 	def constructor_string(hash)
 		self.id = hash[:id]
 		splitted = hash[:string].split(';')
-		if !Student.is_get_family_and_initials(splitted[0])
+		if !Student.is_family_and_initials(splitted[0])
 			raise ArgumentError.new "Family and initials in wrong format."
 		end
 		self.short_name = splitted[0]

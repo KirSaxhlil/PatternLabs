@@ -56,7 +56,11 @@ class BaseStudent
 	end
 	
 	def id=(new_id)
-		@id = new_id
+		if new_id.class == Integer
+			@id = new_id
+		else
+			raise ArgumentError.new "Id must be Integer"
+		end
 	end
 	
 	def git?()

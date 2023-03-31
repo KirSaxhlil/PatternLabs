@@ -86,7 +86,7 @@ class Student < BaseStudent
 	### CLASS METHODS
 	public
 	
-	def self.is_get_family_and_initials(string)
+	def self.is_family_and_initials(string)
 		return string.match(/^[a-zA-Z]+ [a-zA-Z].[a-zA-Z].$/)
 	end
 end

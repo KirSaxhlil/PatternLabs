@@ -58,6 +58,11 @@ class BaseStudent
 	def id=(new_id)
 		if new_id.class == Integer
 			@id = new_id
+		elsif new_id.class == String
+			if new_id.match(/\D/)
+				raise ArgumentError.new "Id must be Integer"
+			end
+			self.id = new_id.to_i
 		else
 			raise ArgumentError.new "Id must be Integer"
 		end
@@ -122,6 +127,7 @@ class BaseStudent
 		if new_telegram.class == String
 			if new_telegram.empty?
 				self.telegram = nil
+				return
 			end
 			dog = false
 			if new_telegram[0] == '@' #check for first staying @

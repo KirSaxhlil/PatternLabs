@@ -89,4 +89,12 @@ class Student < BaseStudent
 	def self.is_family_and_initials(string)
 		return string.match(/^[a-zA-Z]+ [a-zA-Z].[a-zA-Z].$/)
 	end
+	
+	def self.read_from_txt(path)
+		objects = []
+		File.open(path, "r") do |file|
+			file.each_line { |x| objects.push(Student.new(string:x[0..-2])) }
+		end
+		return objects
+	end
 end

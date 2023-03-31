@@ -1,5 +1,6 @@
 require_relative "student.rb"
 require_relative "student_short.rb"
+require_relative "data_table.rb"
 
 #object1 = Student.new(hash:{id:0, name:"Arbux", family:"Alebarod", patronymic:"Achekavich", phone_number:"+79189356731", email:"address@mail.sd", telegram:"@ahto_ahaha", git:"https://github.com/CyBeR_uSeR"})
 #object2 = Student.new(hash:{id:1, name:"Ti", family: "Prikki", patronymic:"Noitaich", email:"my_bestEmail3@cybermail.gog", git:"gitlab.com/stellAr"})
@@ -15,15 +16,15 @@ require_relative "student_short.rb"
 #puts object3.get_info()
 #puts object4.get_info()
 
-students = Student.read_from_txt("students.txt")
+#students = Student.read_from_txt("students.txt")
 
-students.each { |obj| puts obj.get_info }
+#students.each { |obj| puts obj.get_info }
 
-Student.write_to_txt("file.txt", students)
+#Student.write_to_txt("file.txt", students)
 
-students2 = Student.read_from_txt("file.txt")
+#students2 = Student.read_from_txt("file.txt")
 
-students2.each { |obj| puts obj.get_info }
+#students2.each { |obj| puts obj.get_info }
 
 
 #object3.set_contacts({email:"aba@sringe.com", telegram:nil})
@@ -32,3 +33,8 @@ students2.each { |obj| puts obj.get_info }
 #puts object1.validate()
 #puts object2.validate()
 #puts object3.validate()
+
+matrix = [[1, 2, 3, 4], [3, 4, 5, 6]]
+
+table = DataTable.new(matrix)
+puts table.columns?

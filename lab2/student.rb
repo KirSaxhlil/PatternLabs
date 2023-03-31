@@ -26,7 +26,10 @@ class Student
 		self.git = hash[:git]
 	end
 	def constructor_string(string)
-		splitted = string.split(';')
+		splitted = string.split(';', -1)
+		if splitted.length != 7 # we need all 7 fields, even if it empty
+			raise ArgumentError.new "Wrong string format for constructor."
+		end
 		constructor_hash({name:splitted[0], family:splitted[1], patronymic:splitted[2], phone_number:splitted[3], email:splitted[4], telegram:splitted[5], git:splitted[6]})
 	end
 	

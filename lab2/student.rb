@@ -118,7 +118,7 @@ class Student
 		end
 	end
 	
-	def get_info
+	def get_info_full
 		info = ""
 		info += "This is info about: #{self.family} #{self.name} #{self.patronymic}" + "\n"
 		info += "Phone number: #{self.phone_number}" + "\n" if self.phone_number != nil
@@ -126,6 +126,20 @@ class Student
 		info += "Telegram: #{self.telegram}" + "\n" if self.telegram != nil
 		info += "Git: #{self.git}" + "\n" if self.git != nil
 		return info
+	end
+	
+	def get_info
+		info = "#{get_familiy_and_initials()};"
+		info += "#{self.git};"
+		if self.phone_number != nil then info += "phone_number:#{self.phone_number}"
+		elsif self.telegram != nil then info += "telegram:#{self.telegram}"
+		elsif self.email != nil then info += "email:#{self.email}"
+		end
+		return info
+	end
+	
+	def get_familiy_and_initials
+		return "#{self.family} #{self.name[0]}. #{self.patronymic[0]}."
 	end
 	
 	def self.is_phone_number(string)

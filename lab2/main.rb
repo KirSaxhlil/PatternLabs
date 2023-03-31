@@ -2,6 +2,7 @@ require_relative "student.rb"
 require_relative "student_short.rb"
 require_relative "data_table.rb"
 require_relative "data_list.rb"
+require_relative "data_list_student_short.rb"
 
 #object1 = Student.new(hash:{id:0, name:"Arbux", family:"Alebarod", patronymic:"Achekavich", phone_number:"+79189356731", email:"address@mail.sd", telegram:"@ahto_ahaha", git:"https://github.com/CyBeR_uSeR"})
 #object2 = Student.new(hash:{id:1, name:"Ti", family: "Prikki", patronymic:"Noitaich", email:"my_bestEmail3@cybermail.gog", git:"gitlab.com/stellAr"})
@@ -17,9 +18,16 @@ require_relative "data_list.rb"
 #puts object3.get_info()
 #puts object4.get_info()
 
-#students = Student.read_from_txt("students.txt")
+students = Student.read_from_txt("students.txt")
+students_short = []
 
-#students.each { |obj| puts obj.get_info }
+students.each { |obj| students_short.push(StudentShort.new(object:obj)) }
+
+dlss = DataListStudentShort.new(students_short)
+
+dt = dlss.get_data()
+
+puts dt.get_element(1, 1)
 
 #Student.write_to_txt("file.txt", students)
 
@@ -40,8 +48,8 @@ require_relative "data_list.rb"
 #table = DataTable.new(matrix)
 #puts table.columns?
 
-array = [1,2,3,4,5]
-list = DataList.new(array)
-list.select(1)
-list.select(3)
-puts list.get_selected()
+#array = [1,2,3,4,5]
+#list = DataList.new(array)
+#list.select(1)
+#list.select(3)
+#puts list.get_selected()

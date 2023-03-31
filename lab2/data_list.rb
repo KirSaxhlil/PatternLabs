@@ -28,6 +28,11 @@ class DataList
 		raise NotImplementedError.new "Calling abstract method" # kinda abstract method
 	end
 	
+	### OBJECT PROTECTED METHODS
+	protected
+	
+	attr_reader :array
+	
 	### OBJECT PRIVATE METHODS
 	private
 	

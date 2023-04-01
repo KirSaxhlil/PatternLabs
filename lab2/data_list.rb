@@ -21,20 +21,29 @@ class DataList
 	end
 	
 	def get_names()
-		raise NotImplementedError.new "Calling abstract method" # kinda abstract method
+		return ["№"] + get_names_inner()
 	end
 	
 	def get_data()
-		raise NotImplementedError.new "Calling abstract method" # kinda abstract method
+		matrix = []
+		index = 0
+		self.array.each { |item|
+			matrix.push( [index] + get_data_inner(item) )
+			index += 1
+		}
+		return DataTable.new(matrix)
 	end
-	
-	### OBJECT PROTECTED METHODS
-	protected
-	
-	attr_reader :array
 	
 	### OBJECT PRIVATE METHODS
 	private
 	
-	attr_reader :selected
+	attr_reader :selected, :array
+	
+	def get_data_inner(item)
+		return []
+	end
+	
+	def get_names_inner()
+		return []
+	end
 end

@@ -43,7 +43,7 @@ class StudentShort < BaseStudent
 	
 	def get_info
 		info = super()
-		info += ";#{short_name};"
+		info += ";#{self.short_name};"
 		info += "#{self.git};"
 		contact = get_one_contact()
 		info += "#{contact[:type]}:#{contact[:contact]}"

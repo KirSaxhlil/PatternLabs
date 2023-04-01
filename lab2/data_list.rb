@@ -1,6 +1,6 @@
 class DataList
 	def initialize(objects)
-		@array = objects
+		self.array = objects
 		@selected = []
 	end
 	
@@ -34,10 +34,19 @@ class DataList
 		return DataTable.new(matrix)
 	end
 	
+	def array=(new_array)
+		new_array.each { |item|
+			if item.class != item_class()
+				raise ArgumentError.new "All elements must be #{item_class()} class."
+			end
+		}
+		@array = new_array
+	end
+	
 	### OBJECT PRIVATE METHODS
 	private
 	
-	attr_reader :selected, :array
+	attr_reader :selected, :array, :item_class
 	
 	def get_data_inner(item)
 		return []
@@ -45,5 +54,9 @@ class DataList
 	
 	def get_names_inner()
 		return []
+	end
+	
+	def item_class()
+		return Object
 	end
 end

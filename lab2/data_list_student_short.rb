@@ -1,6 +1,5 @@
 require_relative "data_list.rb"
 require_relative "student_short.rb"
-require_relative "data_table.rb"
 
 class DataListStudentShort < DataList
 	
@@ -12,5 +11,9 @@ class DataListStudentShort < DataList
 	def get_data_inner(item)
 		attributes = item.get_info().split(';')[1..-1]
 		return attributes[0..-2] + attributes[-1].split(':')
+	end
+	
+	def item_class()
+		return StudentShort
 	end
 end

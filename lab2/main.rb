@@ -22,13 +22,14 @@ students = Student.read_from_txt("students.txt")
 students_short = []
 
 students.each { |obj| students_short.push(StudentShort.new(object:obj)) }
+#students_short += [2]
 
 dlss = DataListStudentShort.new(students_short)
 
 dt = dlss.get_data()
 
 puts dlss.get_names()
-puts dt.get_element(1, 4)
+puts dt.get_element(1, 1)
 
 #Student.write_to_txt("file.txt", students)
 

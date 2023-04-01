@@ -27,7 +27,8 @@ dlss = DataListStudentShort.new(students_short)
 
 dt = dlss.get_data()
 
-puts dt.get_element(1, 1)
+puts dlss.get_names()
+puts dt.get_element(1, 4)
 
 #Student.write_to_txt("file.txt", students)
 

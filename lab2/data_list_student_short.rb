@@ -4,6 +4,7 @@ require_relative "data_table.rb"
 
 class DataListStudentShort < DataList
 	
+	private
 	def get_names_inner()
 		return ["Short name", "Git", "Contact type", "Contact"]
 	end

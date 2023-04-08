@@ -81,17 +81,4 @@ class Student < BaseStudent
 		return string.match(/^[a-zA-Z]+ [a-zA-Z].[a-zA-Z].$/)
 	end
 	
-	def self.read_from_txt(path)
-		objects = []
-		File.open(path, "r") do |file|
-			file.each_line { |x| objects.push(Student.new_string(x[0..-2])) }
-		end
-		return objects
-	end
-	
-	def self.write_to_txt(path, array)
-		File.open(path, "w") do |file|
-			array.each { |obj| file.write(obj.get_info_full+"\n") }
-		end
-	end
 end

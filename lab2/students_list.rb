@@ -3,18 +3,23 @@ require_relative "student_short.rb"
 require_relative "data_list_student_short.rb"
 
 class StudentsList
-	attr_reader :objects
+	attr_reader :objects, :file_operator
 	
-	def initialize()
+	def initialize(file_operator)
 		@objects = []
+		self.file_operator = file_operator
 	end
 	
 	def read_file(path)
-		
+		@objects = self.file_operator.read_file(path)
 	end
 	
 	def write_file(path)
-		
+		self.file_operator.write_file(path, self.objects)
+	end
+	
+	def file_operator=(object)
+		@file_operator = object
 	end
 	
 	def [](id)

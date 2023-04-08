@@ -3,7 +3,8 @@ require_relative "student_short.rb"
 require_relative "data_table.rb"
 require_relative "data_list.rb"
 require_relative "data_list_student_short.rb"
-require_relative "students_list_txt.rb"
+require_relative "students_list.rb"
+require_relative "file_operator_txt.rb"
 
 object1 = Student.new_hash({id:0, name:"Arbux", family:"Alebarod", patronymic:"Achekavich", phone_number:"+79189356731", email:"address@mail.sd", telegram:"@ahto_ahaha", git:"https://github.com/CyBeR_uSeR"})
 #object2 = Student.new(hash:{id:1, name:"Ti", family: "Prikki", patronymic:"Noitaich", email:"my_bestEmail3@cybermail.gog", git:"gitlab.com/stellAr"})
@@ -59,7 +60,8 @@ object1 = Student.new_hash({id:0, name:"Arbux", family:"Alebarod", patronymic:"A
 #list.select(3)
 #puts list.get_selected()
 
-studentslist = StudentsListTxt.new()
+studentslist = StudentsList.new(FileOperatorTxt.new())
+#studentslist.file_operator = FileOperatorTxt.new()
 studentslist.read_file("students.txt")
 #puts studentslist[10].get_info()
 

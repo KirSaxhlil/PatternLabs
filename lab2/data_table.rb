@@ -1,4 +1,7 @@
 class DataTable
+	### INITIALIZE
+	private
+	
 	def initialize(matrix)
 		@matrix = matrix
 	end

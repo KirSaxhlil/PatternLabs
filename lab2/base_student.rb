@@ -1,27 +1,25 @@
 class BaseStudent
-	attr_reader :id, :phone_number, :email, :telegram, :git
+	### GENERATED
+	public attr_reader :id, :phone_number, :email, :telegram, :git
 	
-	def initialize(hash)
-		if hash != nil
-			constructor_hash(hash)
-		else
-			constructor_default()
-		end
-	end
-	
-	### CONSTRUCTOR METHODS
+	### INITIALIZE
 	private
 	
-	def constructor_default
-		raise ArgumentError.new "Constructor constructor needs data."
-	end
-	def constructor_hash(hash)
+	def initialize(hash)
 		if hash[:id] == nil
 			raise ArgumentError.new "Student should has id."
 		end
 		self.id = hash[:id]
 		set_contacts({phone_number:hash[:phone_number], email:hash[:email], telegram:hash[:telegram]})
 		self.git = hash[:git]
+	end
+	
+	### CONSTRUCTOR METHODS
+	private_class_method :new
+	
+	public
+	def self.new_hash(hash)
+		return new(hash)
 	end
 	
 	### OBJECT PUBLIC METHODS

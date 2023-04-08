@@ -2,40 +2,33 @@ require_relative "base_student.rb"
 require_relative "student.rb"
 
 class StudentShort < BaseStudent
-	attr_reader :short_name
+	### GENERATED
+	public attr_reader :short_name
 	
-	def initialize(object:nil, hash:nil)
-		if object != nil
-			constructor_object(object)
-		elsif hash != nil
-			constructor_string(hash)
-		else
-			constructor_default()
+	### INITIALIZE
+	private
+	
+	# hash = {:id, :short_name, :git, :contact_type, :contact}
+	def initialize(hash)
+		if !Student.is_family_and_initials(hash[:short_name])
+			raise ArgumentError.new "Family and initials in wrong format."
 		end
+		self.short_name = hash[:short_name]
+		set_contact_by_name(hash[:contact_type], hash[:contact])
+		super({id:hash[:id], git:hash[:git]})
 	end
 	
 	### CONSTRUCTOR METHODS
-	private
+	public
 	
-	def constructor_object(object)
-		self.id = object.id
-		self.short_name = object.get_family_and_initials()
-		self.git = object.git
+	def self.new_object(object)
 		contact = object.get_one_contact()
-		if contact != nil
-			set_contact_by_name(contact[:type], contact[:contact])
-		end
+		return new({id:object.id, short_name:(object.get_family_and_initials()), git:object.git, contact_type:contact[:type], contact:contact[:contact]})
 	end
-	def constructor_string(hash)
-		self.id = hash[:id]
-		splitted = hash[:string].split(';')
-		if !Student.is_family_and_initials(splitted[0])
-			raise ArgumentError.new "Family and initials in wrong format."
-		end
-		self.short_name = splitted[0]
-		self.git = splitted[1]
+	def self.new_string(new_id, string)
+		splitted = string.split(';')
 		contact_splitted = splitted[2].split(':')
-		set_contact_by_name(contact_splitted[0], contact_splitted[1])
+		return new({id:new_id, short_name:splitted[0], git:splitted[1], contact_type:contact_splitted[0], contact:contact_splitted[1]})
 	end
 	
 	### OBJECT PUBLIC METHODS
@@ -51,7 +44,6 @@ class StudentShort < BaseStudent
 	end
 	
 	### OBJECT PRIVATE METHODS
-	
 	private :set_contacts, :git=, :id=
 	
 	private

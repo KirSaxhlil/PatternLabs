@@ -1,4 +1,10 @@
 class DataList
+	### GENERATED
+	private attr_reader :selected, :array
+	
+	### INITIALIZE
+	private
+	
 	def initialize(objects)
 		self.array = objects
 		@selected = []
@@ -17,7 +23,11 @@ class DataList
 	end
 	
 	def get_selected()
-		return self.selected
+		ids = []
+		selected.each { |item|
+			ids += [array[item].id]
+		}
+		return ids
 	end
 	
 	def get_names()
@@ -45,8 +55,6 @@ class DataList
 	
 	### OBJECT PRIVATE METHODS
 	private
-	
-	attr_reader :selected, :array, :item_class
 	
 	def get_data_inner(item)
 		return []

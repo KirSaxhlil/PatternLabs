@@ -1,20 +1,13 @@
 require_relative "base_student.rb"
 
 class Student < BaseStudent
-	attr_reader :name, :family, :patronymic
+	### GENERATED
+	public attr_reader :name, :family, :patronymic
 	
-	def initialize(hash:nil, string:nil)
-		if string != nil
-			constructor_string(string)
-		else
-			super(hash)
-		end
-	end
-	
-	### CONSTRUCTOR METHODS
+	### INITIALIZE
 	private
 	
-	def constructor_hash(hash)
+	def initialize(hash)
 		#name, family and patronymic are necessary, others optional
 		if(hash[:name] == nil or hash[:family] == nil or hash[:patronymic] == nil)
 			raise ArgumentError.new "Name, family and patronymic are necessary for constructor."
@@ -23,12 +16,15 @@ class Student < BaseStudent
 		super({id:hash[:id], git:hash[:git], phone_number:hash[:phone_number], email:hash[:email], telegram:hash[:telegram]})
 	end
 	
-	def constructor_string(string)
+	### CONSTRUCTOR METHODS
+	public
+	
+	def self.new_string(string)
 		splitted = string.split(';', -1)
 		if splitted.length != 8 # we need all 8 fields, even if it empty
 			raise ArgumentError.new "Wrong string format for constructor."
 		end
-		constructor_hash({id:splitted[0], name:splitted[1], family:splitted[2], patronymic:splitted[3], phone_number:splitted[4], email:splitted[5], telegram:splitted[6], git:splitted[7]})
+		return new({id:splitted[0], name:splitted[1], family:splitted[2], patronymic:splitted[3], phone_number:splitted[4], email:splitted[5], telegram:splitted[6], git:splitted[7]})
 	end
 	
 	### OBJECT PUBLIC METHODS
@@ -88,7 +84,7 @@ class Student < BaseStudent
 	def self.read_from_txt(path)
 		objects = []
 		File.open(path, "r") do |file|
-			file.each_line { |x| objects.push(Student.new(string:x[0..-2])) }
+			file.each_line { |x| objects.push(Student.new_string(x[0..-2])) }
 		end
 		return objects
 	end

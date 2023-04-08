@@ -4,14 +4,16 @@ require_relative "data_table.rb"
 require_relative "data_list.rb"
 require_relative "data_list_student_short.rb"
 
-#object1 = Student.new(hash:{id:0, name:"Arbux", family:"Alebarod", patronymic:"Achekavich", phone_number:"+79189356731", email:"address@mail.sd", telegram:"@ahto_ahaha", git:"https://github.com/CyBeR_uSeR"})
+object1 = Student.new_hash({id:0, name:"Arbux", family:"Alebarod", patronymic:"Achekavich", phone_number:"+79189356731", email:"address@mail.sd", telegram:"@ahto_ahaha", git:"https://github.com/CyBeR_uSeR"})
 #object2 = Student.new(hash:{id:1, name:"Ti", family: "Prikki", patronymic:"Noitaich", email:"my_bestEmail3@cybermail.gog", git:"gitlab.com/stellAr"})
 #object3 = Student.new(hash:{id:"2", name:"lARrius", family:"VarrO", patronymic:"sToRyViCh", phone_number:79336421496, telegram:"BloodBath"})
-#object4 = Student.new(string:"3;NAME;FAMILIAR;PAPAPAPA;89882883838;;;")
+object4 = Student.new_string("3;NAME;FAMILIAR;PAPAPAPA;89882883838;;;")
 #object5 = Student.new()
 
-#object_short1 = StudentShort.new(hash:{id:5, string:"Bafyly B.T.;github.com/JJJ_rare;telegram:tigra"})
+object_short1 = StudentShort.new_string(5, "Bafyly B.T.;github.com/JJJ_rare;telegram:tigra")
+object_short2 = StudentShort.new_object(object1)
 #puts object_short1.get_info()
+#puts object_short2.get_info()
 
 #puts object1.get_info()
 #puts object2.get_info()
@@ -21,15 +23,15 @@ require_relative "data_list_student_short.rb"
 students = Student.read_from_txt("students.txt")
 students_short = []
 
-students.each { |obj| students_short.push(StudentShort.new(object:obj)) }
+students.each { |obj| students_short.push(StudentShort.new_object(obj)) }
 #students_short += [2]
 
 dlss = DataListStudentShort.new(students_short)
 
-dt = dlss.get_data()
+#dt = dlss.get_data()
 
-puts dlss.get_names()
-puts dt.get_element(1, 1)
+#puts dlss.get_names()
+#puts dt.get_element(1, 3)
 
 #Student.write_to_txt("file.txt", students)
 

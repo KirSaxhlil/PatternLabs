@@ -1,6 +1,6 @@
 require_relative "file_operator.rb"
 
-class FileOperatorTxt < FileOperator
+class FileOperatorTXT < FileOperator
 	
 	def read_file(path)
 		objects = []

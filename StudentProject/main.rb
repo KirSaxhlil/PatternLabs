@@ -1,12 +1,12 @@
-require_relative "student.rb"
-require_relative "student_short.rb"
-require_relative "data_table.rb"
-require_relative "data_list.rb"
-require_relative "data_list_student_short.rb"
-require_relative "students_list.rb"
-require_relative "file_operator_txt.rb"
-require_relative "file_operator_json.rb"
-require_relative "file_operator_yaml.rb"
+require_relative "student/student.rb"
+require_relative "student/student_short.rb"
+require_relative "collections/data_table.rb"
+require_relative "collections/data_list.rb"
+require_relative "collections/data_list_student_short.rb"
+require_relative "collections/students_list.rb"
+require_relative "file operator/file_operator_txt.rb"
+require_relative "file operator/file_operator_json.rb"
+require_relative "file operator/file_operator_yaml.rb"
 #require "yaml"
 
 #object1 = Student.new_hash({id:0, name:"Arbux", family:"Alebarod", patronymic:"Achekavich", phone_number:"+79189356731", email:"address@mail.sd", telegram:"@ahto_ahaha", git:"https://github.com/CyBeR_uSeR"})
@@ -63,22 +63,24 @@ require_relative "file_operator_yaml.rb"
 #list.select(3)
 #puts list.get_selected()
 
-studentslist = StudentsList.new(FileOperatorTXT.new())
-#studentslist.read_file("students.txt")
-#studentslist.file_operator = FileOperatorYAML.new()
-studentslist.file_operator = FileOperatorJSON.new()
-#studentslist.write_file("students.yml")
-#studentslist.write_file("students.json")
-#studentslist.read_file("students.yml")
-studentslist.read_file("students.json")
+# studentslist = StudentsList.new(FileOperatorTXT.new())
+# #studentslist.read_file("students.txt")
+# #studentslist.file_operator = FileOperatorYAML.new()
+# studentslist.file_operator = FileOperatorJSON.new()
+# #studentslist.write_file("students.yml")
+# #studentslist.write_file("students.json")
+# #studentslist.read_file("students.yml")
+# studentslist.read_file("students.json")
+# studentslist.file_operator = FileOperatorTXT.new()
+# studentslist.write_file("students.txt")
 #puts studentslist.get_k_n_student_short_list(2,2)
 #puts studentslist[4].get_info()
 
 #studentslist.sort()
 #studentslist.replace_student(4, object1)
-dlss = studentslist.get_k_n_student_short_list(0,5)
-dt = dlss.get_data()
-puts dt.get_element(1,1)
+#dlss = studentslist.get_k_n_student_short_list(0,5)
+#dt = dlss.get_data()
+#puts dt.get_element(1,1)
 
 #studentslist.get_k_n_student_short_list(2,2, dlss)
 #dt = dlss.get_data()

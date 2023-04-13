@@ -1,4 +1,4 @@
-require_relative "student.rb"
+require_relative "../student/student.rb"
 
 class FileOperator
 	### PUBLIC OBJECT METHODS

@@ -1,6 +1,8 @@
 require_relative "student.rb"
 
 class FileOperator
+	### PUBLIC OBJECT METHODS
+	public
 
 	def read_file(path)
 		

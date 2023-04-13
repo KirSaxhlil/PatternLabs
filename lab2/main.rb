@@ -5,8 +5,11 @@ require_relative "data_list.rb"
 require_relative "data_list_student_short.rb"
 require_relative "students_list.rb"
 require_relative "file_operator_txt.rb"
+require_relative "file_operator_json.rb"
+require_relative "file_operator_yaml.rb"
+#require "yaml"
 
-object1 = Student.new_hash({id:0, name:"Arbux", family:"Alebarod", patronymic:"Achekavich", phone_number:"+79189356731", email:"address@mail.sd", telegram:"@ahto_ahaha", git:"https://github.com/CyBeR_uSeR"})
+#object1 = Student.new_hash({id:0, name:"Arbux", family:"Alebarod", patronymic:"Achekavich", phone_number:"+79189356731", email:"address@mail.sd", telegram:"@ahto_ahaha", git:"https://github.com/CyBeR_uSeR"})
 #object2 = Student.new(hash:{id:1, name:"Ti", family: "Prikki", patronymic:"Noitaich", email:"my_bestEmail3@cybermail.gog", git:"gitlab.com/stellAr"})
 #object3 = Student.new(hash:{id:"2", name:"lARrius", family:"VarrO", patronymic:"sToRyViCh", phone_number:79336421496, telegram:"BloodBath"})
 #object4 = Student.new_string("3;NAME;FAMILIAR;PAPAPAPA;89882883838;;;")
@@ -60,13 +63,19 @@ object1 = Student.new_hash({id:0, name:"Arbux", family:"Alebarod", patronymic:"A
 #list.select(3)
 #puts list.get_selected()
 
-studentslist = StudentsList.new(FileOperatorTxt.new())
-#studentslist.file_operator = FileOperatorTxt.new()
-studentslist.read_file("students.txt")
-#puts studentslist[10].get_info()
+studentslist = StudentsList.new(FileOperatorTXT.new())
+#studentslist.read_file("students.txt")
+#studentslist.file_operator = FileOperatorYAML.new()
+studentslist.file_operator = FileOperatorJSON.new()
+#studentslist.write_file("students.yml")
+#studentslist.write_file("students.json")
+#studentslist.read_file("students.yml")
+studentslist.read_file("students.json")
+#puts studentslist.get_k_n_student_short_list(2,2)
+#puts studentslist[4].get_info()
 
-studentslist.sort()
-studentslist.replace_student(4, object1)
+#studentslist.sort()
+#studentslist.replace_student(4, object1)
 dlss = studentslist.get_k_n_student_short_list(0,5)
 dt = dlss.get_data()
 puts dt.get_element(1,1)
@@ -74,3 +83,9 @@ puts dt.get_element(1,1)
 #studentslist.get_k_n_student_short_list(2,2, dlss)
 #dt = dlss.get_data()
 #puts dt.get_element(0,3)
+
+#puts YAML.load(File.read("students.yml"), permitted_classes:[Student]).get_info() #.map{|hash| hash.transform_keys(&:to_sym)}
+#puts YAML.load_file("students.yml", permitted_classes:[Student]).get_info() #.map{|hash| hash.transform_keys(&:to_sym)}
+#File.open("students.json", "r") do |file|
+#			file.each_line { |x| if(x != "") then puts (JSON.parse(x).transform_keys(&:to_sym)) end }
+#		end

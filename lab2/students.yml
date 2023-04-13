@@ -1,0 +1,45 @@
+--- !ruby/object:Student
+name: Arbux
+family: Alebarod
+patronymic: Achekavich
+id: 0
+email: address@mail.sd
+phone_number: "+79189356731"
+telegram: "@ahto_ahaha"
+git: https://github.com/CyBeR_uSeR
+--- !ruby/object:Student
+name: Ti
+family: Prikki
+patronymic: Noitaich
+id: 1
+email: my_bestEmail3@cybermail.gog
+phone_number:
+telegram:
+git: gitlab.com/stellAr
+--- !ruby/object:Student
+name: Larrius
+family: Varro
+patronymic: Storyvich
+id: 2
+email:
+phone_number: '79336421496'
+telegram: "@BloodBath"
+git:
+--- !ruby/object:Student
+name: Name
+family: Familiar
+patronymic: Papapapa
+id: 3
+email:
+phone_number: '89882883838'
+telegram: "@gigaChad"
+git:
+--- !ruby/object:Student
+name: Biri
+family: Bafyly
+patronymic: Tigra
+id: 4
+email:
+phone_number:
+telegram: "@tigra"
+git: github.com/JJJ_rar

@@ -3,12 +3,20 @@ require_relative "student_short.rb"
 require_relative "data_list_student_short.rb"
 
 class StudentsList
-	attr_reader :objects, :file_operator
+	### GENERATED
+	private attr_reader :objects
+	public attr_reader :file_operator
+	
+	### INITIALIZE
+	private
 	
 	def initialize(file_operator)
 		@objects = []
 		self.file_operator = file_operator
 	end
+	
+	### PUBLIC OBJECT METHODS
+	public
 	
 	def read_file(path)
 		@objects = self.file_operator.read_file(path)
@@ -27,14 +35,6 @@ class StudentsList
 			if obj.id == id then return obj end
 		}
 		return nil
-	end
-	
-	def []=(id, object)
-		index = 0
-		self.objects.each { |obj|
-			if obj.id == id then self.objects[index] = object end
-			index += 1
-		}
 	end
 	
 	def get_k_n_student_short_list(k, n, input = nil)
@@ -74,5 +74,16 @@ class StudentsList
 	
 	def get_student_short_count()
 		return self.objects.length
+	end
+	
+	### PRIVATE OBJECT METHODS
+	private
+	
+	def []=(id, object)
+		index = 0
+		self.objects.each { |obj|
+			if obj.id == id then self.objects[index] = object end
+			index += 1
+		}
 	end
 end

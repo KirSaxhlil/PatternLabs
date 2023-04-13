@@ -2,6 +2,8 @@ require_relative "file_operator.rb"
 require "yaml"
 
 class FileOperatorYAML < FileOperator
+	### PUBLIC OBJECT METHODS
+	public
 	
 	def read_file(path)
 		objects = []

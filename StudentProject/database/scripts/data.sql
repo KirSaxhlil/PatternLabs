@@ -1,4 +1,4 @@
-Insert into Students (Name, Family, Patronymic, Git, PhoneNumber, Telegram, Email)
+Insert into Student (Name, Family, Patronymic, Git, PhoneNumber, Telegram, Email)
 Values ("Григорий", "Григорьев", "Григорьевич", "github.com/zaza", null, "@zaza", "zaza19@mail.ru"),
        ("Анна", "Леонова", "Максимовна", "github.com/cadacko", "+71112940425", "@cadacko", "cadacko@gmail.com"),
        ("Варвара", "Ефремова", "Елисеевна", "github.com/wzinasttr", "+78990657193", "@wzinasttr", "wzinasttr@mail.ru"),

@@ -12,8 +12,11 @@ require "sqlite3"
 
 db = SQLite3::Database.open 'database/students.db'
 db.results_as_hash = true
-db.execute File.read("database/scripts/structure.sql")
-db.execute File.read("database/scripts/data.sql")
+#db.execute File.read("database/scripts/structure.sql")
+#db.execute File.read("database/scripts/data.sql")
+
+result = db.query "SELECT * FROM Student"
+result.each { |row| puts row }
 
 #object1 = Student.new_hash({id:0, name:"Arbux", family:"Alebarod", patronymic:"Achekavich", phone_number:"+79189356731", email:"address@mail.sd", telegram:"@ahto_ahaha", git:"https://github.com/CyBeR_uSeR"})
 #object2 = Student.new(hash:{id:1, name:"Ti", family: "Prikki", patronymic:"Noitaich", email:"my_bestEmail3@cybermail.gog", git:"gitlab.com/stellAr"})

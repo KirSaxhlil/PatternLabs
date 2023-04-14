@@ -1,4 +1,4 @@
-create table if not exists Students (
+create table if not exists Student (
     ID INTEGER PRIMARY KEY AUTOINCREMENT,
 	Name varchar(20) not null,
 	Family	varchar(20) not null,

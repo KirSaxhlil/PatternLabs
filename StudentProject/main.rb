@@ -5,18 +5,20 @@ require_relative "collections/data_list.rb"
 require_relative "collections/data_list_student_short.rb"
 require_relative "collections/students_list_file.rb"
 require_relative "collections/students_list_db.rb"
-require_relative "file operator/file_operator_txt.rb"
-require_relative "file operator/file_operator_json.rb"
-require_relative "file operator/file_operator_yaml.rb"
+require_relative "data operators/file_operator_txt.rb"
+require_relative "data operators/file_operator_json.rb"
+require_relative "data operators/file_operator_yaml.rb"
+require_relative "data operators/db_operator.rb"
 require "sqlite3"
 #require "yaml"
 
-StudentsListDB.connect("database/students.db")
-#dlss = StudentsListDB.instance.get_k_n_student_short_list(0,5)
+DBOperator.connect("database/students.db")
+sldb = StudentsListDB.new()
+#dlss = sldb.get_k_n_student_short_list(0,5)
 #dt = dlss.get_data()
 #puts dt.get_element(1, 3)
 
-puts StudentsListDB.instance[3].get_info()
+#puts sldb[3].get_info()
 
 #db = SQLite3::Database.open 'database/students.db'
 #db.results_as_hash = true
@@ -26,14 +28,16 @@ puts StudentsListDB.instance[3].get_info()
 #result = db.query "SELECT * FROM Student"
 #result.each { |row| puts row }
 
-#object1 = Student.new_hash({id:0, name:"Arbux", family:"Alebarod", patronymic:"Achekavich", phone_number:"+79189356731", email:"address@mail.sd", telegram:"@ahto_ahaha", git:"https://github.com/CyBeR_uSeR"})
-#object2 = Student.new(hash:{id:1, name:"Ti", family: "Prikki", patronymic:"Noitaich", email:"my_bestEmail3@cybermail.gog", git:"gitlab.com/stellAr"})
+object1 = Student.new_hash({id:0, name:"Arbux", family:"Alebarod", patronymic:"Achekavich", phone_number:"+79189356731", email:"address@mail.sd", telegram:"@ahto_ahaha", git:"https://github.com/CyBeR_uSeR"})
+object2 = Student.new_hash({id:1, name:"Ti", family: "Prikki", patronymic:"Noitaich", email:"my_bestEmail3@cybermail.gog", git:"gitlab.com/stellAr"})
 #object3 = Student.new(hash:{id:"2", name:"lARrius", family:"VarrO", patronymic:"sToRyViCh", phone_number:79336421496, telegram:"BloodBath"})
 #object4 = Student.new_string("3;NAME;FAMILIAR;PAPAPAPA;89882883838;;;")
 #object5 = Student.new()
 
-#StudentsListDB.instance.remove_student(11)
-#puts StudentsListDB.instance.count
+#sldb.add_student(object1)
+#sldb.replace_student(17, object2)
+#sldb.remove_student(17)
+#puts sldb.get_count()
 
 #object_short1 = StudentShort.new_string(5, "Bafyly B.T.;github.com/JJJ_rare;telegram:tigra")
 #object_short2 = StudentShort.new_object(object1)

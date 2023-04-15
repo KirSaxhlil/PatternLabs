@@ -32,21 +32,21 @@ class Student < BaseStudent
 	
 	def set_name(hash)
 		if hash[:name] != nil #if we not input name, not change this
-			if hash[:name].match(/^[a-zA-Z]+$/)
+			if hash[:name].match(/^[a-zA-Zа-яА-Я]+$/)
 				@name = hash[:name].capitalize
 			else
 				raise ArgumentError.new "Wrong name."
 			end
 		end
 		if hash[:family] != nil #if we not input family, not change this
-			if hash[:family].match(/^[a-zA-Z]+$/)
+			if hash[:family].match(/^[a-zA-Zа-яА-Я]+$/)
 				@family = hash[:family].capitalize
 			else
 				raise ArgumentError.new "Wrong family."
 			end
 		end
 		if hash[:patronymic] != nil #if we not input patronymic, not change this
-			if hash[:patronymic].match(/^[a-zA-Z]+$/)
+			if hash[:patronymic].match(/^[a-zA-Zа-яА-Я]+$/)
 				@patronymic = hash[:patronymic].capitalize
 			else
 				raise ArgumentError.new "Wrong patronymic."
@@ -78,7 +78,7 @@ class Student < BaseStudent
 	public
 	
 	def self.is_family_and_initials(string)
-		return string.match(/^[a-zA-Z]+ [a-zA-Z].[a-zA-Z].$/)
+		return string.match(/^[a-zA-Zа-яА-Я]+ [a-zA-Zа-яА-Я].[a-zA-Zа-яА-Я].$/)
 	end
 	
 end

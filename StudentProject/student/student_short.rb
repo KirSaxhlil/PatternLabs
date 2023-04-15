@@ -23,6 +23,7 @@ class StudentShort < BaseStudent
 	
 	def self.new_object(object)
 		contact = object.get_one_contact()
+		if contact == nil then contact = {type:nil, contact:nil} end
 		return new({id:object.id, short_name:(object.get_family_and_initials()), git:object.git, contact_type:contact[:type], contact:contact[:contact]})
 	end
 	def self.new_string(new_id, string)
@@ -39,7 +40,9 @@ class StudentShort < BaseStudent
 		info += ";#{self.short_name};"
 		info += "#{self.git};"
 		contact = get_one_contact()
-		info += "#{contact[:type]}:#{contact[:contact]}"
+		if contact != nil
+			info += "#{contact[:type]}:#{contact[:contact]}"
+		end
 		return info
 	end
 	
@@ -55,11 +58,11 @@ class StudentShort < BaseStudent
 	def set_contact_by_name(name, contact)
 		case name
 			when "phone_number"
-				set_contacts(phone_number:contact)
+				set_contacts(phone_number:contact, telegram:"", email:"")
 			when "telegram"
-				set_contacts(telegram:contact)
+				set_contacts(telegram:contact, phone_number:"", email:"")
 			when "email"
-				set_contacts(email:contact)
+				set_contacts(email:contact, phone_number:"", telegram:"")
 		end
 	end
 end

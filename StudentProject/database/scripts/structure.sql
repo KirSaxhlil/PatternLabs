@@ -1,10 +1,10 @@
 create table if not exists Student (
-    ID INTEGER PRIMARY KEY AUTOINCREMENT,
-	Name varchar(20) not null,
-	Family	varchar(20) not null,
-	Patronymic varchar(20) not null,
-	Git	varchar(50) null,
-	PhoneNumber varchar(12) null,
-	Telegram varchar(30) null,
-	Email varchar(50) null
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+	name varchar(20) not null,
+	family	varchar(20) not null,
+	patronymic varchar(20) not null,
+	git	varchar(50) null,
+	phone_number varchar(12) null,
+	telegram varchar(30) null,
+	email varchar(50) null
 );

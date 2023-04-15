@@ -2,7 +2,7 @@ require_relative "../student/student.rb"
 require_relative "../student/student_short.rb"
 require_relative "data_list_student_short.rb"
 
-class StudentsList
+class StudentsListFile
 	### GENERATED
 	private attr_reader :objects
 	public attr_reader :file_operator
@@ -10,9 +10,8 @@ class StudentsList
 	### INITIALIZE
 	private
 	
-	def initialize(file_operator)
+	def initialize()
 		@objects = []
-		self.file_operator = file_operator
 	end
 	
 	### PUBLIC OBJECT METHODS

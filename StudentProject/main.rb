@@ -9,11 +9,13 @@ require_relative "data operators/file_operator_txt.rb"
 require_relative "data operators/file_operator_json.rb"
 require_relative "data operators/file_operator_yaml.rb"
 require_relative "data operators/db_operator.rb"
+require_relative "collections/students_list.rb"
+require_relative "collections/students_list_db_adapter_to_file.rb"
 require "sqlite3"
 #require "yaml"
 
-DBOperator.connect("database/students.db")
-sldb = StudentsListDB.new()
+#DBOperator.connect("database/students.db")
+#sldb = StudentsListDB.new()
 #dlss = sldb.get_k_n_student_short_list(0,5)
 #dt = dlss.get_data()
 #puts dt.get_element(1, 3)
@@ -28,8 +30,8 @@ sldb = StudentsListDB.new()
 #result = db.query "SELECT * FROM Student"
 #result.each { |row| puts row }
 
-object1 = Student.new_hash({id:0, name:"Arbux", family:"Alebarod", patronymic:"Achekavich", phone_number:"+79189356731", email:"address@mail.sd", telegram:"@ahto_ahaha", git:"https://github.com/CyBeR_uSeR"})
-object2 = Student.new_hash({id:1, name:"Ti", family: "Prikki", patronymic:"Noitaich", email:"my_bestEmail3@cybermail.gog", git:"gitlab.com/stellAr"})
+#object1 = Student.new_hash({id:0, name:"Arbux", family:"Alebarod", patronymic:"Achekavich", phone_number:"+79189356731", email:"address@mail.sd", telegram:"@ahto_ahaha", git:"https://github.com/CyBeR_uSeR"})
+#object2 = Student.new_hash({id:1, name:"Ti", family: "Prikki", patronymic:"Noitaich", email:"my_bestEmail3@cybermail.gog", git:"gitlab.com/stellAr"})
 #object3 = Student.new(hash:{id:"2", name:"lARrius", family:"VarrO", patronymic:"sToRyViCh", phone_number:79336421496, telegram:"BloodBath"})
 #object4 = Student.new_string("3;NAME;FAMILIAR;PAPAPAPA;89882883838;;;")
 #object5 = Student.new()
@@ -115,3 +117,27 @@ object2 = Student.new_hash({id:1, name:"Ti", family: "Prikki", patronymic:"Noita
 #File.open("students.json", "r") do |file|
 #			file.each_line { |x| if(x != "") then puts (JSON.parse(x).transform_keys(&:to_sym)) end }
 #		end
+
+#list = StudentsListFile.new()
+#list.file_operator = FileOperatorTXT.new()
+#list.read_file("examples/students.txt")
+#list.file_operator = FileOperatorJSON.new()
+#list.write_file("test.json")
+#list.read_file("examples/students.json")
+#list.file_operator = FileOperatorYAML.new()
+#list.write_file("test.yaml")
+#list.read_file("test.yaml")
+#list.file_operator = FileOperatorTXT.new()
+#list.write_file("test.txt")
+
+#DBOperator.connect("database/students.db")
+#list = StudentsList.new(StudentsListDB.new())
+#object = Student.new_string(list[2].get_info_full())
+list = StudentsList.new(StudentsListDBAdapterToFile.new(FileOperatorTXT.new(), "test.txt"))
+#list.remove_student(3)
+#list.add_student(object)
+
+object = Student.new_string(list[4].get_info_full())
+list = StudentsList.new(StudentsListDBAdapterToFile.new(FileOperatorYAML.new(), "test.yaml"))
+list.remove_student(1)
+list.replace_student(2,object)

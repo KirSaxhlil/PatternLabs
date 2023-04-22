@@ -30,7 +30,7 @@ require "sqlite3"
 #result = db.query "SELECT * FROM Student"
 #result.each { |row| puts row }
 
-#object1 = Student.new_hash({id:0, name:"Arbux", family:"Alebarod", patronymic:"Achekavich", phone_number:"+79189356731", email:"address@mail.sd", telegram:"@ahto_ahaha", git:"https://github.com/CyBeR_uSeR"})
+object1 = Student.new_hash({id:0, name:"Arbux", family:"Alebarod", patronymic:"Achekavich", phone_number:"+79189356731", email:"address@mail.sd", telegram:"@ahto_ahaha", git:"https://github.com/CyBeR_uSeR"})
 #object2 = Student.new_hash({id:1, name:"Ti", family: "Prikki", patronymic:"Noitaich", email:"my_bestEmail3@cybermail.gog", git:"gitlab.com/stellAr"})
 #object3 = Student.new(hash:{id:"2", name:"lARrius", family:"VarrO", patronymic:"sToRyViCh", phone_number:79336421496, telegram:"BloodBath"})
 #object4 = Student.new_string("3;NAME;FAMILIAR;PAPAPAPA;89882883838;;;")
@@ -132,12 +132,14 @@ require "sqlite3"
 
 #DBOperator.connect("database/students.db")
 #list = StudentsList.new(StudentsListDB.new())
+#list.remove_student(17)
+#puts Student.new_hash(DBOperator.instance.get_student(1)).get_info()
 #object = Student.new_string(list[2].get_info_full())
-list = StudentsList.new(StudentsListDBAdapterToFile.new(FileOperatorTXT.new(), "test.txt"))
+#list = StudentsList.new(StudentsListDBAdapterToFile.new(FileOperatorTXT.new(), "test.txt"))
 #list.remove_student(3)
 #list.add_student(object)
 
-object = Student.new_string(list[4].get_info_full())
-list = StudentsList.new(StudentsListDBAdapterToFile.new(FileOperatorYAML.new(), "test.yaml"))
-list.remove_student(1)
-list.replace_student(2,object)
+#object = Student.new_string(list[4].get_info_full())
+#list = StudentsList.new(StudentsListDBAdapterToFile.new(FileOperatorYAML.new(), "test.yaml"))
+#list.remove_student(1)
+#list.replace_student(2,object)

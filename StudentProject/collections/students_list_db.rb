@@ -16,7 +16,7 @@ class StudentsListDB
 	public
 	
 	def [](id)
-		return DBOperator.instance.get_student(id)
+		return Student.new_hash(DBOperator.instance.get_student(id))
 	end
 	
 	def get_k_n_student_short_list(k, n, input = nil)
@@ -24,7 +24,7 @@ class StudentsListDB
 		output = []
 		result.each { |student|
 			#puts row
-			output.push(StudentShort.new_object(student))
+			output.push(StudentShort.new_object(Student.new_hash(student)))
 		}
 		if input == nil
 			return DataListStudentShort.new(output)
@@ -34,7 +34,7 @@ class StudentsListDB
 	end
 	
 	def add_student(object)
-		DBOperator.instance.add_student(object)
+		DBOperator.instance.add_student("'#{object.name}', '#{object.family}', '#{object.patronymic}', '#{object.git}', '#{object.phone_number}', '#{object.telegram}', '#{object.email}'")
 	end
 	
 	def remove_student(id)
@@ -42,7 +42,8 @@ class StudentsListDB
 	end
 	
 	def replace_student(id, object)
-		DBOperator.instance.replace_student(id, object)
+		DBOperator.instance.replace_student(id, "name='#{object.name}', family='#{object.family}', patronymic='#{object.patronymic}',
+			git='#{object.git}', phone_number='#{object.phone_number}', telegram='#{object.telegram}', email='#{object.email}'")
 	end
 	
 	def get_count()

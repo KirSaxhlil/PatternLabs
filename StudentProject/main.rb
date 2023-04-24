@@ -12,11 +12,12 @@ require_relative "data operators/db_operator.rb"
 require_relative "collections/students_list.rb"
 require_relative "collections/students_list_db_adapter_to_file.rb"
 require_relative "gui/window_main.rb"
+require_relative "gui/students_list_controller.rb"
 require "sqlite3"
 #require "yaml"
 
 app = FXApp.new()
-WindowMain.new(app)
+FXBWindowMain.new(app)
 app.create()
 app.run()
 

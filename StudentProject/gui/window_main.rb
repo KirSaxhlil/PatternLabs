@@ -48,7 +48,27 @@ class WindowMain < FXMainWindow
         FXLabel.new(undertable_horizon_rigth, "Страница X из N")
         btn_next_page = FXButton.new(undertable_horizon_rigth, ">>")
 
-        
+        column_buttons = FXVerticalFrame.new(frame, opts:LAYOUT_FIX_WIDTH, width:150)
+        btn_create = FXButton.new(column_buttons, "Добавить", opts:LAYOUT_FILL_X|FRAME_SUNKEN|FRAME_THICK)
+        btn_change = FXButton.new(column_buttons, "Изменить", opts:LAYOUT_FILL_X|FRAME_SUNKEN|FRAME_THICK)
+        btn_delete = FXButton.new(column_buttons, "Удалить", opts:LAYOUT_FILL_X|FRAME_SUNKEN|FRAME_THICK)
+        btn_update = FXButton.new(column_buttons, "Обновить", opts:LAYOUT_FILL_X|FRAME_SUNKEN|FRAME_THICK)
+        btn_change.disable()
+        btn_delete.disable()
+
+        table.connect(SEL_COMMAND) { |sender, sel, data|
+            dist = table.selEndRow - table.selStartRow
+            if table.selStartRow == -1
+                btn_change.disable()
+                btn_delete.disable()
+            elsif dist > 0
+                btn_change.disable()
+                btn_delete.enable()
+            elsif dist == 0
+                btn_change.enable()
+                btn_delete.enable()
+            end
+        }
         
     end
 end

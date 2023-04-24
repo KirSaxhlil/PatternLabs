@@ -11,8 +11,14 @@ require_relative "data operators/file_operator_yaml.rb"
 require_relative "data operators/db_operator.rb"
 require_relative "collections/students_list.rb"
 require_relative "collections/students_list_db_adapter_to_file.rb"
+require_relative "gui/window_main.rb"
 require "sqlite3"
 #require "yaml"
+
+app = FXApp.new()
+WindowMain.new(app)
+app.create()
+app.run()
 
 #DBOperator.connect("database/students.db")
 #sldb = StudentsListDB.new()
@@ -30,8 +36,8 @@ require "sqlite3"
 #result = db.query "SELECT * FROM Student"
 #result.each { |row| puts row }
 
-object1 = Student.new_hash({id:0, name:"Arbux", family:"Alebarod", patronymic:"Achekavich", phone_number:"+79189356731", email:"address@mail.sd", telegram:"@ahto_ahaha", git:"https://github.com/CyBeR_uSeR"})
-object2 = Student.new_hash({id:1, name:"Ti", family: "Prikki", patronymic:"Noitaich", email:"my_bestEmail3@cybermail.gog", git:"gitlab.com/stellAr"})
+#object1 = Student.new_hash({id:0, name:"Arbux", family:"Alebarod", patronymic:"Achekavich", phone_number:"+79189356731", email:"address@mail.sd", telegram:"@ahto_ahaha", git:"https://github.com/CyBeR_uSeR"})
+#object2 = Student.new_hash({id:1, name:"Ti", family: "Prikki", patronymic:"Noitaich", email:"my_bestEmail3@cybermail.gog", git:"gitlab.com/stellAr"})
 #object3 = Student.new(hash:{id:"2", name:"lARrius", family:"VarrO", patronymic:"sToRyViCh", phone_number:79336421496, telegram:"BloodBath"})
 #object4 = Student.new_string("3;NAME;FAMILIAR;PAPAPAPA;89882883838;;;")
 #object5 = Student.new()
@@ -130,10 +136,10 @@ object2 = Student.new_hash({id:1, name:"Ti", family: "Prikki", patronymic:"Noita
 #list.file_operator = FileOperatorTXT.new()
 #list.write_file("test.txt")
 
-DBOperator.connect("database/students.db")
-list = StudentsList.new(StudentsListDB.new())
+#DBOperator.connect("database/students.db")
+#list = StudentsList.new(StudentsListDB.new())
 #list.add_student(object1)
-list.replace_student(18, object2)
+#list.replace_student(18, object2)
 #list.remove_student(17)
 #puts Student.new_hash(DBOperator.instance.get_student(1)).get_info()
 #object = Student.new_string(list[2].get_info_full())

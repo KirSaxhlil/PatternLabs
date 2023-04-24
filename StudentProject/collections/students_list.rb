@@ -60,4 +60,8 @@ class StudentsList
 	def get_count()
 		self.list.get_count()
 	end
+
+	def notify(target)
+		target.refresh_pages_data(get_count())
+	end
 end

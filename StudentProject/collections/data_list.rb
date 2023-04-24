@@ -1,3 +1,4 @@
+require_relative "../gui/elements/fx_table_students.rb"
 class DataList
 	### GENERATED
 	private attr_reader :selected, :array
@@ -36,7 +37,7 @@ class DataList
 	
 	def get_data()
 		matrix = []
-		index = 0
+		index = 1
 		self.array.each { |item|
 			matrix.push( [index] + get_data_inner(item) )
 			index += 1
@@ -51,6 +52,11 @@ class DataList
 			end
 		}
 		@array = new_array
+	end
+
+	def notify(target)
+		target.set_table_params(get_names(), array.length)
+		target.set_table_data(get_data())
 	end
 	
 	### OBJECT PRIVATE METHODS

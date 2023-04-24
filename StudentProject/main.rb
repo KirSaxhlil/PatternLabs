@@ -11,15 +11,20 @@ require_relative "data operators/file_operator_yaml.rb"
 require_relative "data operators/db_operator.rb"
 require_relative "collections/students_list.rb"
 require_relative "collections/students_list_db_adapter_to_file.rb"
-require_relative "gui/window_main.rb"
-require_relative "gui/students_list_controller.rb"
+require_relative "gui/windows/window_main.rb"
 require "sqlite3"
 #require "yaml"
 
+DBOperator.connect("database/students.db")
 app = FXApp.new()
 FXBWindowMain.new(app)
 app.create()
 app.run()
+
+#dl = StudentsList.new_db()
+#dlss = dl.get_k_n_student_short_list(0,5)
+#
+#puts dlss.get_data().columns?
 
 #DBOperator.connect("database/students.db")
 #sldb = StudentsListDB.new()

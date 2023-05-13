@@ -7,9 +7,12 @@ class BaseStudent
 	
 	def initialize(hash)
 		if hash[:id] == nil
-			raise ArgumentError.new "Student should has id."
+			self.id = 0
+			#raise ArgumentError.new "Student should has id."
+		else
+			self.id = hash[:id]
 		end
-		self.id = hash[:id]
+		
 		set_contacts({phone_number:hash[:phone_number], email:hash[:email], telegram:hash[:telegram]})
 		self.git = hash[:git]
 	end
@@ -159,7 +162,7 @@ class BaseStudent
 		if string[0] == '+'
 			temp_string = string[1..-1]
 		end
-		if temp_string.match(/\D/)
+		if temp_string.match?(/\D/)
 			return false
 		end
 		if temp_string.length != 11
@@ -170,12 +173,12 @@ class BaseStudent
 	
 	def self.is_email(string)
 		# before and after @ need any letter, digit or _, but at least 1 letter, after XX@XX needs dot, and after only letters
-		return string.match(/^\w*[a-zA-Z]+\w*@\w*[a-zA-Z]+\w*\.[a-zA-Z]+$/)
+		return string.match?(/^\w*[a-zA-Z]+\w*@\w*[a-zA-Z]+\w*\.[a-zA-Z]+$/)
 	end
 	
 	def self.is_git(string)
 		# at begin may be https://, after need github.com/ or gitlab.com/, after we need user id
-		return string.match(/^(https\:\/\/)?((github)|(gitlab))\.(com)\/\w+$/)
+		return string.match?(/^(https\:\/\/)?((github)|(gitlab))\.(com)\/\w+$/)
 	end
 	
 	def self.is_telegram(string)
@@ -183,7 +186,7 @@ class BaseStudent
 		if temp_string[0] == '@' #check for first staying @
 			temp_string = string[1..-1]
 		end
-		return temp_string.match(/^\w+$/)
+		return temp_string.match?(/^\w+$/)
 	end
 	
 end

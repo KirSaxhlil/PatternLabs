@@ -16,6 +16,7 @@ require "sqlite3"
 #require "yaml"
 
 DBOperator.connect("database/students.db")
+DBOperator.instance.connection.execute("BEGIN TRANSACTION; END;")
 app = FXApp.new()
 FXBWindowMain.new(app)
 app.create()

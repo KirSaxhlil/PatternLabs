@@ -4,8 +4,9 @@ require_relative "../windows/window_main.rb"
 
 class StudentsListController
     ### GENERATED
-    private attr_reader :window, :list
+    private attr_reader :window
     private attr_accessor :list_short
+    public attr_reader :list
 
     ### INITIALIZE
     private
@@ -28,5 +29,10 @@ class StudentsListController
         self.list_short.notify(window.students_list_view.table_region.table)
 
         self.list.notify(window.students_list_view.table_region)
+    end
+
+    def create_student_window()
+        win = FXBWindowStudent.new(window.app, window)
+        win.create
     end
 end

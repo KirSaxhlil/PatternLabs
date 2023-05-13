@@ -3,18 +3,21 @@ include Fox
 
 require_relative "../blocks/fxb_students_list_view.rb"
 require_relative "../controllers/students_list_controller.rb"
+require_relative "window_student.rb"
 
 class FXBWindowMain < FXMainWindow
     ### GENERATED
     public attr_reader :students_list_view
     private attr_writer :students_list_view
-    private attr_reader :controller
+    public attr_reader :controller
+    public attr_reader :app
 
     ### INITIALIZE
     private
     def initialize(app)
         @controller = StudentsListController.new(self)
 
+        @app = app
         super(app, "Ультра руби прилога", width:1000, height:400)
         tabber = FXTabBook.new(self, opts:LAYOUT_FILL)
 
@@ -68,6 +71,10 @@ class FXBWindowMain < FXMainWindow
             self.students_list_view.table_region.change_page(0)
             self.controller.refresh_data()
         }
+
+        self.students_list_view.buttons_region.btn_create.connect(SEL_COMMAND) { |sender|
+            self.btn_create_on_click()
+        }
     end
 
     def filter_defaults()
@@ -80,5 +87,9 @@ class FXBWindowMain < FXMainWindow
         self.students_list_view.filter_region.fb_email.change_input_editable()
         self.students_list_view.filter_region.fb_phone.change_input_editable()
         self.students_list_view.filter_region.fb_telegram.change_input_editable()
+    end
+
+    def btn_create_on_click()
+        self.controller.create_student_window()
     end
 end

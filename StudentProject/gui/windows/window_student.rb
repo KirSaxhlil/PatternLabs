@@ -93,7 +93,7 @@ class FXBWindowStudent < FXMainWindow
             self.ok_btn_on_click()
         }
         self.cancel_btn.connect(SEL_COMMAND) { |sender|
-            
+            self.cancel_btn_on_click()
         }
     end
 
@@ -103,5 +103,9 @@ class FXBWindowStudent < FXMainWindow
 
     def ok_btn_on_click()
         self.controller.create_student()
+    end
+
+    def cancel_btn_on_click()
+        self.controller.close_window()
     end
 end

@@ -39,5 +39,10 @@ class AddStudentController
     def create_student()
         temp = Student.new_hash({name:self.window.name_field.text, family:self.window.family_field.text, patronymic:self.window.patronymic_field.text, phone_number:self.window.phone_field.text, telegram:self.window.telegram_field.text, email:self.window.email_field.text, git:self.window.git_field.text })
         window.parent.controller.list.add_student(temp)
+        window.hide()
+    end
+
+    def close_window()
+        window.hide()
     end
 end
